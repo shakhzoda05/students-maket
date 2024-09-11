@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Page</title>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+      </style>
+</head>
+<body class="bg-[#F2EAE1] h-[100vh] flex">
+    <div class="w-[20%] pr-[38px] pb-[31px] pt-[18px] h-[100vh] ">
+        <div class="w-full ">
+            <h2 class="font-bold relative ml-[35px] mb-[54px] text-[22px] leading-[24px] text-[#000000] pl-[18px] before:absolute before:w-[5px] before:h-[24px] before:bg-[#F8D442] before:left-0">Admin Students</h2>
+            <div class="text-center pl-[70px] pr-[32px] mb-[43px]">
+                <label>
+                    <input type="file" class="avatar-img hidden">
+                    <img src="./img/avatar.png" alt="avatar" width="140" height="140" class="avatar rounded-[50%] w-[140px] h-[140px] mx-auto">
+                </label>
+                <p class="font-bold text-[17px] leading-[21px] text-[#000000] mb-[10px] mt-[25px]">Karthi Madesh</p>
+                <span class="font-normal text-[14px] leading-[17px] text-[#FEAF00]">Admin</span>
+            </div>
+            <div class="h-[48vh] pl-[70px] pr-[32px] flex flex-col justify-between ">
+                <a href="#" class=" w-full flex items-center justify-center gap-[15px] bg-[#FEAF00] py-[12px] text-[14px] font-medium leading-[17px] rounded-[4px]">
+                    <img src="./img/icon.svg" alt="icon" width="20" height="16">
+                    Students
+                </a>
+              
+                <a href="./index.html" class="mx-auto flex gap-[23px] items-center" href="#">
+                    <span>Logout</span> 
+                    <img src="./img/logout.svg" alt="logout" width="17" height="17">
+                </a>
+            </div>
+        </div>
+
+    </div> 
+
+
+    <div class="w-[80%] flex flex-col ">
+        <div class="px-[30px] py-[12px] flex justify-between items-center ">
+            <img src="./img/back.svg" alt="back" width="18" height="18">
+            <div class="pr-[21px] flex items-center justify-between gap-[27px]">
+                <label class="rounded-[8px] bg-white py-[11px] px-[12px] flex items-center">
+                    <input type="text" placeholder="Search" class="search w-[200px] outline-none text-[#FEAF00] ">
+                    <button type="button" class="">
+                        <img src="./img/search.svg" alt="search" width="14" height="14">
+                    </button>
+                </label>
+                <img src="./img/bell.svg" alt="bell" width="17" height="20" >
+            </div>
+        </div>
+        <div class="w-full h-[92vh] bg-[#F8F8F8] px-[30px]">
+            <div class="py-[11.5px] flex justify-between items-center border-b-[1px] border-[#E5E5E5]">
+                <h3 class="font-bold text-[22px] leading-[27px] text-[#000000]">Students List</h3>
+                <div class="flex gap-[30px] ">
+                    <img src="./img/scroll.svg" onclick="clickSort()" alt="scroll" width="14" height="22" class="cursor-pointer">
+                    <button type="button" onclick="handleAdd()" class="w-[200px] rounded-[4px] bg-[#FEAF00] py-[13px] text-[14px] font-medium text-white leading-[17px] ">ADD NEW STUDENT </button>
+                </div>
+            </div>
+            <ul class="w-[793px] ml-[139px] py-[21px] flex">
+                <li class="font-bold mr-[121px] font-semibold text-[13px] leading-[15px] text-[#ACACAC] ">Name</li>
+                <li class="font-bold mr-[155px] font-semibold text-[13px] leading-[15px] text-[#ACACAC] ">Email</li>
+                <li class="font-bold mr-[100px] font-semibold text-[13px] leading-[15px] text-[#ACACAC] ">Phone</li>
+                <li class="font-bold mr-[125px] font-semibold text-[13px] leading-[15px] text-[#ACACAC] ">Enroll Number</li>
+                <li class="font-bold font-semibold text-[13px] leading-[15px] text-[#ACACAC] ">Date admission</li>
+            </ul>
+            <ul class="student-list flex flex-col gap-[10px]">
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="modal fixed scale-0 transition-all duration-500 top-0 left-0 w-full h-full backdrop-blur-md bg-white/20">
+        <form class="modal-form w-[700px] p-5 rounded-md absolute bg-white top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
+            <label>
+                <input type="file" class="img-input hidden" >
+                <img src="./img/empty-img.png" alt="img" width="80" height="100"  class="image mx-auto rounded-md">
+            </label>
+            <div class="flex justify-between mt-[20px] w-full gap-[14px]" >
+                <div class="flex flex-col space-y-[12px] w-[48%]">
+                    <label class="flex flex-col space-y-[3px]">
+                        <span>Enter name</span>
+                        <input type="text" required placeholder="Name" name="name" class="outline-none p-[8px] rounded-[4px] text-[#FEAF00] border-[1px] border-slate-300 text-[12px] placeholder:text-[12px] focus:border-[#FEAF00]">
+                    </label>
+                    <label class="flex flex-col space-y-[3px]">
+                        <span>Enter phone</span>
+                        <input type="tel" required placeholder="Phone" name="phone" class="outline-none p-[8px] rounded-[4px] text-[#FEAF00] border-[1px] border-slate-300 text-[12px] placeholder:text-[12px] focus:border-[#FEAF00]">
+                    </label>
+                    <label class="flex flex-col space-y-[3px]">
+                        <span>Enter date</span>
+                        <input type="date" required placeholder="dd-month,year" name="date" class="outline-none p-[8px] rounded-[4px] text-[#FEAF00] border-[1px] border-slate-300 text-[12px] placeholder:text-[12px] focus:border-[#FEAF00]">
+                    </label>
+                </div>
+                <div class="flex flex-col space-y-[12px] w-[48%]">
+                    <label class="flex flex-col space-y-[3px]">
+                        <span>Enter email</span>
+                        <input type="email" required placeholder="Email" name="email" class="outline-none p-[8px] rounded-[4px] text-[#FEAF00] border-[1px] border-slate-300 text-[12px] placeholder:text-[12px] focus:border-[#FEAF00]">
+                    </label>
+                    <label class="flex flex-col space-y-[3px]">
+                        <span>Enter enroll number</span>
+                        <input type="number" required placeholder="Enroll Number" name="number" class="outline-none p-[8px] rounded-[4px] text-[#FEAF00] border-[1px] border-slate-300 text-[12px] placeholder:text-[12px] focus:border-[#FEAF00] ">
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="w-full mx-auto block bg-[#FEAF00] py-[8px] w-[400px] rounded-md text-white mt-[20px] hover:shadow-md">Submit</button>
+            <span onclick="handleBack()" type="button" class="absolute cursor-pointer bg-[#FEAF00] w-[25px] h-[25px] flex justify-center items-center rounded-[50%] right-3 top-3 text-white">X</span>
+        </form>
+    </div>
+
+
+
+
+
+
+
+    <script src="./js/student.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+</body>
+</html>
